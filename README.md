@@ -28,7 +28,7 @@ This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wra
 
   a.  Endpoint is at /create. To upload a file, you must send a file using a POST request, putting the file as a header under         "upload".
   
-  b.  An example CURL is "curl -i -F upload=@[FILE] localhost:8000/create.
+  b.  An example CURL is curl -i -F upload=@[FILE] localhost:8000/create.
   
   c.  If running this on a remote server, the localhost:8000 part will change.
 
