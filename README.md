@@ -38,7 +38,3 @@ This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wra
   
   b.  If there is a good conversion, the uploaded file will remain in the /uploads folder with the original name intact, while the converted files will be placed in the /images folder with the format NAME_thumbnail_page_X.png.
 
-
- ## Implementation Details
- 
-  a.  
