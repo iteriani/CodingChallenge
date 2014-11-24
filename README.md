@@ -35,5 +35,7 @@ This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wra
 
   a.  The file conversion will start as soon as the file is uploaded. If the file is not a PDF, the conversion will stop        immediately and the user will receive an empty array, signifying that no files were uploaded because of bad format or that there are no pages in the PDF.
   
-  b.  If there is a good conversion, the uploaded file will remain in the /uploads folder with the original name intact, while the converted files will be placed in the /images folder with the format NAME_thumbnail_page_X.png.
+  b.  If there is a good conversion, the uploaded file will remain in the "/uploads" folder with the original name intact, while the converted files will be placed in the "/images" folder with the format NAME_thumbnail_page_X.png.
+  
+  c. The endpoint to receive images will be provided in the API, but they can be accessed using the "/images/FILENAME_thumbnail_page_X.png" endpoint.
 
