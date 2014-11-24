@@ -10,7 +10,6 @@ This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wra
 - [How to Run]
 - [How to Upload Files]
 - [Output]
-- [Implementation Details]
 ## How to run 
 
   a.    Install imageMagick at http://www.imagemagick.org
