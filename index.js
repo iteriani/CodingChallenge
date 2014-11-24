@@ -4,11 +4,15 @@ var Path = require("path");
 var fs = require("fs");
 var converter = require("imageConverter");
 var outputDirectory = "images";
+var debugFlag = false;
 
 var server = new Hapi.Server('0.0.0.0', '8000');
 var host = server.info.uri;
 
 server.start();
+console.log("Server running on " + host);
+
+
 
 /* Route to obtain images.*/
 server.route({
@@ -23,7 +27,9 @@ server.route({
     }
 });
 
-/* Route to send images. */
+
+
+/* Route to send images.  */
 server.route({
     method: 'POST',
     path: '/create',
@@ -35,7 +41,7 @@ server.route({
         },
         handler: function(request, reply) {
             var data = request.payload;
-            console.log("HI");
+            console.log("Received quest!");
             if (data.upload) {
                 var name = data.upload.hapi.filename;
                 var path = __dirname + "/uploads/" + name;
@@ -46,11 +52,11 @@ server.route({
                 });
 
                 data.upload.pipe(file);
-                console.log("PIPing fILE");
+                console.log("Uploading file...");
                 data.upload.on('end', function(err) {
                     console.log("Converting file");
                     converter.convert(path, outputDirectory, function(items) {
-                        console.log("responding file");
+                        console.log("Responding output files!");
                         var response = items.map(function(item) {
                             return {
                                 name: displayedName,
@@ -61,7 +67,7 @@ server.route({
                     });
                 });
             } else {
-                console.log(data);
+                console.log("Unable to convert PDF");
                 reply([]);
             }
         }
