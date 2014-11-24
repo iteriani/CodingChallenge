@@ -3,8 +3,15 @@ CodingChallenge
 
 PDF to PNG file uploader
 
+This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wrapper contains one method -- convert -- which takes an input directory file and an output directory where each single page is converted to a separate png and its path to access it is returned in an array.
 
-## How to run ##
+## Table of Contents
+
+- [How to Run]
+- [How to Upload Files]
+- [Output]
+- [Implementation Details]
+## How to run 
 
   a.    Install imageMagick at http://www.imagemagick.org
     for Mac you can type "brew install imagemagick" if you have brew installed.
@@ -30,3 +37,8 @@ PDF to PNG file uploader
   a.  The file conversion will start as soon as the file is uploaded. If the file is not a PDF, the conversion will stop        immediately and the user will receive an empty array, signifying that no files were uploaded because of bad format or that there are no pages in the PDF.
   
   b.  If there is a good conversion, the uploaded file will remain in the /uploads folder with the original name intact, while the converted files will be placed in the /images folder with the format NAME_thumbnail_page_X.png.
+
+
+ ## Implementation Details
+ 
+  a.  
