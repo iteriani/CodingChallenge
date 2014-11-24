@@ -3,7 +3,7 @@ CodingChallenge
 
 PDF to PNG file uploader
 
-This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wrapper contains one method -- convert -- which takes an input directory file and an output directory where each single page is converted to a separate png and its path to access it is returned in an array.
+This is a wrapper for the ImageMagick module that converts PDFs to PNGs. The wrapper, which is found in node_modules/imageConverter, contains one method -- convert -- which takes an input directory file and an output directory where each single page is converted to a separate png and its path to access it is returned in an array. The api route /create will then call this method when it receives all of a PDF and then return a dictionary that maps file name to image url directory.
 
 ## Table of Contents
 
