@@ -27,8 +27,6 @@ server.route({
     }
 });
 
-
-
 /* Route to send images.  */
 server.route({
     method: 'POST',
@@ -41,35 +39,43 @@ server.route({
         },
         handler: function(request, reply) {
             var data = request.payload;
-            console.log("Received quest!");
+            console.log("Received request!");
             if (data.upload) {
-                var name = data.upload.hapi.filename;
-                var path = __dirname + "/uploads/" + name;
-                var file = fs.createWriteStream(path);
-                var displayedName = name.split(".")[0];
-                file.on('error', function(err) {
-                    console.error(err);
-                });
+                var name = data.upload.hapi.filename,
+                    path = __dirname + "/uploads/" + name,
+                    file = fs.createWriteStream(path),
+                    displayedName = name.split(".")[0];
+
+                    file.on('error', function(err) {
+                        console.error(err);
+                        replay([]);
+                    });
 
                 data.upload.pipe(file);
                 console.log("Uploading file...");
                 data.upload.on('end', function(err) {
                     console.log("Converting file");
-                    converter.convert(path, outputDirectory, function(items) {
-                        console.log("Responding output files!");
-                        var response = items.map(function(item) {
-                            return {
-                                name: displayedName,
-                                url: host + "/" + item
-                            };
-                        });
-                        reply(response);
-                    });
+                    converter.convert(path, outputDirectory, itemHandler(reply, displayedName));
                 });
+
             } else {
                 console.log("Unable to convert PDF");
                 reply([]);
             }
+
         }
     }
 });
+
+/* Refactored out a handler function to handle items returned by conversion */
+function itemHandler(reply, displayedName) {
+    return function(items) {
+        var response = items.map(function(item) {
+            return {
+                name: displayedName,
+                url: host + "/" + item
+            };
+        });
+        reply(response);
+    }; 	
+}
